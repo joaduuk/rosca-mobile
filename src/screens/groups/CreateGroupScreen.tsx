@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, ScrollView } from "react-native";
 import { createGroup } from "../../api/groups";
+import CurrencyPicker from "../../components/CurrencyPicker";
+import OptionButtons from "../../components/OptionButtons";
 
-const PERIODS = ["daily", "weekly", "monthly"];
-const ROSCA_TYPES = ["fixed","random"];
-const CURRENCIES = ["USD", "GBP", "EUR", "GHS", "NGN", "KES"];
+const PERIODS = [
+  { value: "daily", label: "Daily" },
+  { value: "weekly", label: "Weekly" },
+  { value: "monthly", label: "Monthly" },
+];
+const ROSCA_TYPES = [
+  { value: "fixed", label: "Fixed" },
+  { value: "random", label: "Random" },
+];
 
 export default function CreateGroupScreen({ navigation }: any) {
   const [name, setName] = useState("");
@@ -77,47 +85,13 @@ export default function CreateGroupScreen({ navigation }: any) {
       />
 
       <Text style={styles.label}>Currency</Text>
-      <View style={styles.pillRow}>
-        {CURRENCIES.map((c) => (
-          <Pressable
-            key={c}
-            onPress={() => setCurrency(c)}
-            style={[styles.pill, currency === c && styles.pillActive]}
-          >
-            <Text style={[styles.pillText, currency === c && styles.pillTextActive]}>{c}</Text>
-          </Pressable>
-        ))}
-      </View>
+      <CurrencyPicker value={currency} onChange={setCurrency} />
 
       <Text style={styles.label}>Contribution Frequency</Text>
-      <View style={styles.pillRow}>
-        {PERIODS.map((p) => (
-          <Pressable
-            key={p}
-            onPress={() => setContributionPeriod(p)}
-            style={[styles.pill, contributionPeriod === p && styles.pillActive]}
-          >
-            <Text style={[styles.pillText, contributionPeriod === p && styles.pillTextActive]}>
-              {p.charAt(0).toUpperCase() + p.slice(1)}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+      <OptionButtons options={PERIODS} value={contributionPeriod} onChange={setContributionPeriod} />
 
       <Text style={styles.label}>Payout Type</Text>
-      <View style={styles.pillRow}>
-        {ROSCA_TYPES.map((t) => (
-          <Pressable
-            key={t}
-            onPress={() => setRoscaType(t)}
-            style={[styles.pill, roscaType === t && styles.pillActive]}
-          >
-            <Text style={[styles.pillText, roscaType === t && styles.pillTextActive]}>
-              {t.charAt(0).toUpperCase() + t.slice(1)}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+      <OptionButtons options={ROSCA_TYPES} value={roscaType} onChange={setRoscaType} />
 
       <Text style={styles.label}>Number of Members</Text>
       <TextInput
@@ -148,17 +122,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   textArea: { minHeight: 70, textAlignVertical: "top" },
-  pillRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  pill: {
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-  },
-  pillActive: { backgroundColor: "#1a6b4a", borderColor: "#1a6b4a" },
-  pillText: { color: "#374151", fontSize: 13 },
-  pillTextActive: { color: "#fff", fontWeight: "600" },
   error: { color: "#ef4444", marginTop: 16 },
   button: {
     backgroundColor: "#1a6b4a",

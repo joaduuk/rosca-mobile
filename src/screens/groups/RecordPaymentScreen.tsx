@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, ScrollView } from "react-native";
 import { recordContribution } from "../../api/contributions";
+import OptionButtons from "../../components/OptionButtons";
 
-const PAYMENT_METHODS = ["cash", "bank_transfer", "mobile_money", "other"];
+const PAYMENT_METHODS = [
+  { value: "cash", label: "Cash" },
+  { value: "bank_transfer", label: "Bank Transfer" },
+  { value: "mobile_money", label: "Mobile Money" },
+  { value: "other", label: "Other" },
+];
 
 export default function RecordPaymentScreen({ route, navigation }: any) {
   const { groupId, membershipId, memberName, cycleNumber, amount, currency } = route.params;
@@ -51,19 +57,7 @@ export default function RecordPaymentScreen({ route, navigation }: any) {
       </Text>
 
       <Text style={styles.label}>Payment Method</Text>
-      <View style={styles.pillRow}>
-        {PAYMENT_METHODS.map((m) => (
-          <Pressable
-            key={m}
-            onPress={() => setPaymentMethod(m)}
-            style={[styles.pill, paymentMethod === m && styles.pillActive]}
-          >
-            <Text style={[styles.pillText, paymentMethod === m && styles.pillTextActive]}>
-              {m.replace("_", " ")}
-            </Text>
-          </Pressable>
-        ))}
-      </View>
+      <OptionButtons options={PAYMENT_METHODS} value={paymentMethod} onChange={setPaymentMethod} columns={2} />
 
       <Text style={styles.label}>Transaction Reference (optional)</Text>
       <TextInput
@@ -104,17 +98,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   textArea: { minHeight: 70, textAlignVertical: "top" },
-  pillRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  pill: {
-    borderWidth: 1,
-    borderColor: "#d1d5db",
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-  },
-  pillActive: { backgroundColor: "#1a6b4a", borderColor: "#1a6b4a" },
-  pillText: { color: "#374151", fontSize: 13, textTransform: "capitalize" },
-  pillTextActive: { color: "#fff", fontWeight: "600" },
   error: { color: "#ef4444", marginTop: 16 },
   button: {
     backgroundColor: "#1a6b4a",
