@@ -119,14 +119,14 @@ export default function CycleManagementScreen({ route }: any) {
       {/* Cycle Decision Panel */}
       <View style={styles.panel}>
         <View style={styles.panelHeader}>
-          <Text style={styles.panelTitle}>Cycle Management</Text>
+          <Text style={styles.panelTitle}>Round Management</Text>
           <Text style={styles.statusBadge}>{STATUS_LABELS[group.group_status] || group.group_status}</Text>
         </View>
 
         {group.group_status === "paused" ? (
           <View>
             <Text style={styles.bodyText}>
-              This group is currently paused. No new cycles will start until you resume it.
+              This group is currently paused. No new round will start until you resume it.
               {group.cycle_decision_note ? `\nNote: ${group.cycle_decision_note}` : ""}
             </Text>
             <Pressable style={styles.primaryButton} onPress={handleResume} disabled={savingDecision}>
@@ -135,13 +135,13 @@ export default function CycleManagementScreen({ route }: any) {
           </View>
         ) : group.group_status === "ended" ? (
           <Text style={styles.bodyText}>
-            This group has ended. No further cycles will run.
+            This group has ended. No further rounds will run.
             {group.cycle_decision_note ? `\nNote: ${group.cycle_decision_note}` : ""}
           </Text>
         ) : (
           <View>
             <Text style={styles.bodyText}>
-              Set what happens when the current cycle completes and the payout is processed.
+              Set what happens once every member has received their payout and the current round completes.
             </Text>
             <View style={styles.decisionRow}>
               {[

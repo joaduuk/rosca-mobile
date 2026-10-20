@@ -4,6 +4,7 @@ export type Contribution = {
   id: string;
   group_id: string;
   membership_id: string;
+  round_number: number;
   cycle_number: number;
   amount: number;
   currency: string;

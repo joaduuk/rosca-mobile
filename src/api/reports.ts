@@ -15,6 +15,7 @@ export type GroupSummary = {
 
 export type Payout = {
   id: string;
+  round_number: number;
   cycle_number: number;
   recipient_name: string;
   amount: number;

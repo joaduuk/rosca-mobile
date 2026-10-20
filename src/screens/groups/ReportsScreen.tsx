@@ -135,7 +135,7 @@ export default function ReportsScreen({ route }: any) {
               <View style={{ flex: 1 }}>
                 <Text style={styles.listCardTitle}>{item.member_name || "Unknown"}</Text>
                 <Text style={styles.listCardMeta}>
-                  Cycle {item.cycle_number} · {formatDate(item.paid_date || item.due_date)}
+                  Round {item.round_number || 1} · Cycle {item.cycle_number} · {formatDate(item.paid_date || item.due_date)}
                 </Text>
                 {item.payment_method ? (
                   <Text style={styles.listCardMeta}>{item.payment_method.replace("_", " ")}</Text>
@@ -175,7 +175,7 @@ export default function ReportsScreen({ route }: any) {
               <View style={{ flex: 1 }}>
                 <Text style={styles.listCardTitle}>{item.recipient_name}</Text>
                 <Text style={styles.listCardMeta}>
-                  Cycle {item.cycle_number} · {formatDate(item.payout_date)}
+                  Round {item.round_number || 1} · Cycle {item.cycle_number} · {formatDate(item.payout_date)}
                 </Text>
                 <Text style={styles.listCardMeta}>
                   {item.paid_count}/{item.contributions_count} contributions {item.all_paid ? "✓" : ""}
