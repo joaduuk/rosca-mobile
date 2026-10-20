@@ -74,7 +74,7 @@ export default function AppStack() {
       <Stack.Screen name="CreateGroup" component={CreateGroupScreen} options={{ title: "New Group" }} />
       <Stack.Screen name="AddMember" component={AddMemberScreen} options={{ title: "Add Member" }} />
       <Stack.Screen name="RecordPayment" component={RecordPaymentScreen} options={{ title: "Record Payment" }} />
-      <Stack.Screen name="CycleManagement" component={CycleManagementScreen} options={{ title: "Manage Cycle" }} />
+      <Stack.Screen name="CycleManagement" component={CycleManagementScreen} options={{ title: "Manage Round" }} />
       <Stack.Screen name="Reports" component={ReportsScreen} options={{ title: "Reports" }} />
       <Stack.Screen name="Notifications" component={NotificationsScreen} options={{ title: "Notifications" }} />
       <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: "My Profile" }} />

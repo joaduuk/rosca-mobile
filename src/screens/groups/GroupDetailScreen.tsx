@@ -150,7 +150,7 @@ export default function GroupDetailScreen({ route, navigation }: any) {
             style={styles.manageButton}
             onPress={() => navigation.navigate("CycleManagement", { groupId })}
           >
-            <Text style={styles.manageButtonText}>Manage Cycle & Requests</Text>
+            <Text style={styles.manageButtonText}>Manage Round & Requests</Text>
           </Pressable>
         ) : null}
       </View>
